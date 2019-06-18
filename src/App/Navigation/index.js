@@ -19,8 +19,11 @@ const Navigation = ({
     <div className="Navigation-link">
       <Link to={routes.ORGANIZATION}>Organization</Link>
     </div>
+    <div className="Navigation-link">
+      <Link to={routes.REPOSITORY}>Repository</Link>
+    </div>
 
-    {pathname === routes.ORGANIZATION && (
+    {(pathname === routes.ORGANIZATION || pathname === routes.REPOSITORY) && (
       <OrganizationSearch
         organizationName={organizationName}
         onOrganizationSearch={onOrganizationSearch}

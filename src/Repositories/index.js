@@ -2,28 +2,27 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-import RepositoryList, { REPOSITORY_FRAGMENT } from '../Repository';
+import RepositoryList, { REPOSITORY_FRAGMENT }  from '../Repository';
 import Loading from '../Loading';
 import ErrorMessage from '../Error';
 
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   query($organizationName: String!, $cursor: String) {
-    organization(login: $organizationName) {
-      repositories(first: 7, after: $cursor, orderBy: { direction: ASC, field: STARGAZERS}) {
-        edges {
-          node {
-            ...repository
-          }
-        }
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-      }
+  search(query:$organizationName, type:REPOSITORY, first:20, after: $cursor){  
+  repositoryCount
+  pageInfo{
+   endCursor
+   startCursor
+  }
+  edges{
+   node{
+    ...repository
     }
-}
-  
-  ${REPOSITORY_FRAGMENT}
+   }
+  }
+ }
+
+${REPOSITORY_FRAGMENT}
 `;
 
 const Organization = ({ organizationName }) => (
@@ -39,16 +38,16 @@ const Organization = ({ organizationName }) => (
       if (error) {
         return <ErrorMessage error={error} />;
       }
-      const { organization } = data;
+      const repositories = data.search;
 
-      if (loading && !organization) {
+      if (loading && !repositories) {
         return <Loading isCenter={true} />;
       }
 
       return (
         <RepositoryList
           loading={loading}
-          repositories={organization.repositories}
+          repositories={repositories}
           fetchMore={fetchMore}
           entry={'organization'}
         />

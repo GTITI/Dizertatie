@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Navigation from './Navigation';
 import Profile from '../Profile';
+import Repository from '../Repositories';
 import Organization from '../Organization';
 
 import * as routes from '../constants/routes';
@@ -45,6 +46,15 @@ class App extends Component {
               component={() => (
                 <div className="App-content_small-header">
                   <Profile />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path={routes.REPOSITORY}
+              component={() => (
+                <div className="App-content_small-header">
+                  <Repository organizationName={organizationName}/>
                 </div>
               )}
             />

@@ -7,6 +7,10 @@
   background-color: #24292e;
   display: flex;
   align-items: baseline;
+  height: 64px;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 @media only screen and (max-device-width: 480px) {
