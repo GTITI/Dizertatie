@@ -18,12 +18,14 @@
 
 .RepositoryItem-title-action {
   margin-left: 10px;
+  text-decoration: underline;
 }
 
 .RepositoryItem-description {
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
+  color: #586069;
 }
 
 @media only screen and (max-device-width: 480px) {

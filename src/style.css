@@ -41,7 +41,7 @@ a {
 
 a:hover {
   opacity: 0.35;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:active {
