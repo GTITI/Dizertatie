@@ -4,6 +4,7 @@ import { Mutation } from 'react-apollo';
 import REPOSITORY_FRAGMENT from '../fragments';
 import Link from '../../Link';
 import Button from '../../Button';
+import styled from 'styled-components';
 
 import '../style.css';
 
@@ -12,6 +13,22 @@ import {
   UNSTAR_REPOSITORY,
   WATCH_REPOSITORY,
 } from '../mutations';
+
+const ButtonsLayout = styled.div`
+  padding: 5px 5px 5px 5px;
+  display: flex;
+  align-items: center;
+`;
+const StarButton = styled.div`
+  padding: 0 5px 0 5px;
+  display: flex;
+`;
+
+const NameButton = styled.div`
+  &:hover {
+    text-decoration: none;
+  }
+`;
 
 const VIEWER_SUBSCRIPTIONS = {
   SUBSCRIBED: 'SUBSCRIBED',
@@ -124,7 +141,7 @@ const RepositoryItem = ({
         <Link href={url}>{name}</Link>
       </h2>
 
-      <div>
+      <ButtonsLayout>
         <Mutation
           mutation={WATCH_REPOSITORY}
           variables={{
@@ -176,12 +193,17 @@ const RepositoryItem = ({
             update={updateAddStar}
           >
             {(addStar, { data, loading, error }) => (
-              <Button
-                className={'RepositoryItem-title-action'}
-                onClick={addStar}
-              >
-                {stargazers.totalCount} Star
-              </Button>
+              <StarButton onClick={addStar}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
+                </svg>
+                <StarButton>{stargazers.totalCount}</StarButton>
+              </StarButton>
             )}
           </Mutation>
         ) : (
@@ -201,16 +223,21 @@ const RepositoryItem = ({
             update={updateRemoveStar}
           >
             {(removeStar, { data, loading, error }) => (
-              <Button
-                className="RepositoryItem-title-action"
-                onClick={removeStar}
-              >
-                {stargazers.totalCount} Unstar
-              </Button>
+              <StarButton onClick={removeStar}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
+                </svg>
+                <StarButton>{stargazers.totalCount}</StarButton>
+              </StarButton>
             )}
           </Mutation>
         )}
-      </div>
+      </ButtonsLayout>
     </div>
 
     <div className="RepositoryItem-description">
@@ -224,13 +251,15 @@ const RepositoryItem = ({
             <span>Language: {primaryLanguage.name}</span>
           )}
         </div>
-        <div>
-          {owner && (
-            <span>
-              Owner: <a href={owner.url}>{owner.login}</a>
-            </span>
-          )}
-        </div>
+
+        {owner && (
+          <ButtonsLayout>
+            Owner:{' '}
+            <a href={owner.url}>
+              <NameButton>{owner.login}</NameButton>
+            </a>
+          </ButtonsLayout>
+        )}
       </div>
     </div>
   </div>

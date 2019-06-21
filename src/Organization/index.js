@@ -9,7 +9,7 @@ import ErrorMessage from '../Error';
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   query($organizationName: String!, $cursor: String) {
     organization(login: $organizationName) {
-      repositories(first: 7, after: $cursor, orderBy: { direction: ASC, field: STARGAZERS}) {
+      repositories(first: 7, after: $cursor, orderBy: { direction: DESC, field: UPDATED_AT}) {
         edges {
           node {
             ...repository
