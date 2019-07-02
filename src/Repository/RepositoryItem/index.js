@@ -20,6 +20,8 @@ const ButtonsLayout = styled.div`
   align-items: center;
 `;
 const StarButton = styled.div`
+  color: ${props => props.viewerHasStarred ? "yellow" : "black"};
+  text-shadow: ${props => props.viewerHasStarred ? "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black" : ""};
   padding: 0 5px 0 5px;
   display: flex;
 `;
@@ -202,7 +204,7 @@ const RepositoryItem = ({
                 >
                   <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                 </svg>
-                <StarButton>{stargazers.totalCount}</StarButton>
+                <StarButton viewerHasStarred={viewerHasStarred}>{stargazers.totalCount}</StarButton>
               </StarButton>
             )}
           </Mutation>
@@ -232,7 +234,7 @@ const RepositoryItem = ({
                 >
                   <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
                 </svg>
-                <StarButton>{stargazers.totalCount}</StarButton>
+                <StarButton viewerHasStarred={viewerHasStarred}>{stargazers.totalCount}</StarButton>
               </StarButton>
             )}
           </Mutation>
