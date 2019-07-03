@@ -3,7 +3,14 @@ import React from 'react';
 import Loading from '../Loading';
 import { ButtonUnobtrusive } from '../Button';
 
-import './style.css';
+import  './style.css';
+import styled from 'styled-components';
+
+const StyledFetchMoreDiv  = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 const FetchMore = ({
   loading,
@@ -13,7 +20,7 @@ const FetchMore = ({
   fetchMore,
   children,
 }) => (
-  <div className="FetchMore">
+  <StyledFetchMoreDiv>
     {loading ? (
       <Loading />
     ) : (
@@ -26,7 +33,7 @@ const FetchMore = ({
         </ButtonUnobtrusive>
       )
     )}
-  </div>
+  </StyledFetchMoreDiv>
 );
 
 export default FetchMore;

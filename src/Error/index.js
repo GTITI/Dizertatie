@@ -1,11 +1,17 @@
 import React from 'react';
 
-import './style.css';
+import styled from 'styled-components';
+
+const Message  = styled.div`
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+`
 
 const ErrorMessage = ({ error }) => (
-  <div className="ErrorMessage">
+  <Message>
     <small>{error.toString()}</small>
-  </div>
+  </Message>
 );
 
 export default ErrorMessage;

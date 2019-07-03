@@ -8,7 +8,7 @@ import Organization from '../Organization';
 
 import * as routes from '../constants/routes';
 
-import './style.css';
+import {StyledDivApp, Main, Header} from './style';
 
 class App extends Component {
   state = {
@@ -24,43 +24,43 @@ class App extends Component {
 
     return (
       <Router>
-        <div className="App">
+        <StyledDivApp>
           <Navigation
             organizationName={organizationName}
             onOrganizationSearch={this.onOrganizationSearch}
           />
 
-          <div className="App-main">
+          <Main>
             <Route
               exact
               path={routes.ORGANIZATION}
               component={() => (
-                <div className="App-content_large-header">
+                <Header>
                   <Organization organizationName={organizationName} />
-                </div>
+                </Header>
               )}
             />
             <Route
               exact
               path={routes.PROFILE}
               component={() => (
-                <div className="App-content_small-header">
+                <Header>
                   <Profile />
-                </div>
+                </Header>
               )}
             />
             <Route
               exact
               path={routes.REPOSITORY}
               component={() => (
-                <div className="App-content_small-header">
+                <Header>
                   <Repository organizationName={organizationName}/>
-                </div>
+                </Header>
               )}
             />
-          </div>
+          </Main>
 
-        </div>
+        </StyledDivApp>
       </Router>
     );
   }

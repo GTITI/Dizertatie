@@ -4,24 +4,23 @@ import { Link, withRouter } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import Button from '../../Button';
 import Input from '../../Input';
-
-import './style.css';
+import {StyledHeader, NavLink, SearchWrapper} from './style';
 
 const Navigation = ({
   location: { pathname },
   organizationName,
   onOrganizationSearch,
 }) => (
-  <header className="Navigation">
-    <div className="Navigation-link">
+  <StyledHeader>
+    <NavLink>
       <Link to={routes.PROFILE}>Profile</Link>
-    </div>
-    <div className="Navigation-link">
+    </NavLink>
+    <NavLink>
       <Link to={routes.ORGANIZATION}>Organization</Link>
-    </div>
-    <div className="Navigation-link">
+    </NavLink>
+    <NavLink>
       <Link to={routes.REPOSITORY}>Repository</Link>
-    </div>
+    </NavLink>
 
     {(pathname === routes.ORGANIZATION || pathname === routes.REPOSITORY) && (
       <OrganizationSearch
@@ -29,7 +28,7 @@ const Navigation = ({
         onOrganizationSearch={onOrganizationSearch}
       />
     )}
-  </header>
+  </StyledHeader>
 );
 
 class OrganizationSearch extends React.Component {
@@ -51,7 +50,7 @@ class OrganizationSearch extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className="Navigation-search">
+      <SearchWrapper>
         <form onSubmit={this.onSubmit}>
           <Input
             color={'white'}
@@ -63,7 +62,7 @@ class OrganizationSearch extends React.Component {
             Search
           </Button>
         </form>
-      </div>
+      </SearchWrapper>
     );
   }
 }

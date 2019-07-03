@@ -1,13 +1,18 @@
 import React from 'react';
 
-import './style.css';
+import styled from 'styled-components';
+
+const Item  = styled.div`
+  display: flex;
+  align-items: baseline;
+`
 
 const Comment = ({ comment }) => (
-  <div className="CommentItem">
+  <Item>
     <div>{comment.author.login}:</div>
     &nbsp;
     <div dangerouslySetInnerHTML={{ __html: comment.bodyHTML }} />
-  </div>
+  </Item>
 );
 
 export default Comment;
